@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
 
-import { Covid19Statistic } from "../covid19-tracker/model";
-import { Covid19FeedComponent } from "./covid19-feed.component";
+import { Covid19Statistic } from "src/app/covid19-tracker/model";
+import { Covid19FeedComponent } from "../covid19-feed.component";
 
 @Component({
     selector: "covid19-feed-country-rank-component",

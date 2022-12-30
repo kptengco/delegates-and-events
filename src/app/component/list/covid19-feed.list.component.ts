@@ -1,18 +1,15 @@
 import { Component, ChangeDetectionStrategy } from "@angular/core";
 
-import { Covid19Statistic } from "../covid19-tracker/model";
-import { Covid19GroupStatisticAdapter } from "../model";
-import { Covid19FeedComponent } from "./covid19-feed.component";
+import { Covid19Statistic } from "../../covid19-tracker/model";
+import { Covid19GroupStatisticAdapter } from "../../model";
+import { Covid19FeedComponent } from "../covid19-feed.component";
 
 type GroupKey = string;
 
 @Component({
     selector: "covid19-feed-list-component",
     templateUrl: "./covid19-feed.list.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    styleUrls: [
-        "./covid19-feed.list.component.scss"
-    ]
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Covid19FeedListComponent extends Covid19FeedComponent {
 
