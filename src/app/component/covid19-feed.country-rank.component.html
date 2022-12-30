@@ -1,0 +1,7 @@
+<h5>Top {{rankLimit}} Countries with Active Cases</h5>
+
+<ol>
+    <ng-container *ngFor="let record of list">
+        <li>{{record.country}}</li>
+    </ng-container>
+</ol>

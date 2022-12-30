@@ -25,3 +25,14 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+const options = {
+    method: 'GET',
+    url: 'https://covid-193.p.rapidapi.com/statistics',
+    headers: {
+      'X-RapidAPI-Key': '463e5717e3msh9c05447c583eb8ap1ba9a7jsn98c1f32ef2a4',
+      'X-RapidAPI-Host': 'covid-193.p.rapidapi.com'
+    }
+  };
+  

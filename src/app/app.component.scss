@@ -1,0 +1,29 @@
+
+:host {
+    display: flex;
+    padding: 20px;
+
+    .flex {
+        display: flex;
+    }
+
+    .flex-auto {
+        flex: 1 1 auto;
+    }
+
+    .flex-col {
+        flex-direction: column;
+    }
+
+    .flex-row {
+        flex-direction: row;
+    }
+
+    .rank {
+        flex: .3;
+    }
+
+    .list {
+        flex: .7;
+    }
+}

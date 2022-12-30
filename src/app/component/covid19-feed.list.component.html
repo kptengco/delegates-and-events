@@ -1,0 +1,45 @@
+<h5>Covid19 Total Active Cases By Continents</h5>
+
+<ng-container *ngFor="let group of groups">
+
+    <div class="flex flex-auto flex-col">
+        <div class="card">
+
+            <div class="card-header cursor-pointer" (click)="group.toggleCollapse()">
+                <div class="flex flex-auto flex-col">
+                    <h6>
+                        {{group.statistic.continent}}
+                        <span class="badge badge-pill badge-primary">{{group.statistic.cases.active | number }}</span>
+                        <span class="float-right fa"
+                            [class.fa-caret-down]="group.collapseView === false"
+                            [class.fa-caret-up]="group.collapseView === true"></span>
+                    </h6>
+                </div>
+            </div>
+
+            <div class="card-body"
+                [class.hide]="group.collapseView === false"
+                [class.show]="group.collapseView === true">
+
+                <table class="table table-hover table-striped table-sm">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Country</th>
+                            <th>Total Active Cases</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <ng-container *ngFor="let stat of getList(group.statistic)">
+                            <tr>
+                                <td>{{stat.country}}</td>
+                                <td>{{(stat.cases.active || 0) | number }}</td>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</ng-container>
