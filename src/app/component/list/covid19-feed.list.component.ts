@@ -20,6 +20,7 @@ export class Covid19FeedListComponent extends Covid19FeedComponent {
 
     public override statisticUpdate(statistic: Covid19Statistic[]): void {
         this.updateGroupList(statistic);
+        this.sortGroupList();
     }
 
     public getList(group: Covid19Statistic): Covid19Statistic[] {
@@ -58,7 +59,13 @@ export class Covid19FeedListComponent extends Covid19FeedComponent {
                 group.push(stat);
             }
         }
+    }
 
+    private generateGroupKey(statistic: Covid19Statistic): string {
+        return statistic.continent;
+    }
+
+    private sortGroupList(): void {
         this.groups = Array.from(this.groupDictionary.values())
             .sort((compareA: Covid19GroupStatisticAdapter, compareB: Covid19GroupStatisticAdapter) => {
                 return compareB.statistic.cases.active - compareA.statistic.cases.active;
@@ -69,9 +76,5 @@ export class Covid19FeedListComponent extends Covid19FeedComponent {
                 return compareB.cases.active - compareA.cases.active;
             });
         }
-    }
-
-    private generateGroupKey(statistic: Covid19Statistic): string {
-        return statistic.continent;
     }
 }

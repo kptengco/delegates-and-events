@@ -1,2 +1,29 @@
-<h5>Overall Active Cases: {{overallActiveCases | number}}</h5>
-<h6>Last Update: {{updatedAt | date:'medium'}}</h6>
+<h5>
+    Overall Active Cases:
+    <ng-container *ngIf="loading">
+        <span class="fa fa-spin fa-spinner"></span>
+    </ng-container>
+
+    <ng-container *ngIf="overallActiveCases > -1">
+        {{overallActiveCases | number}}
+    </ng-container>
+
+    <ng-container *ngIf="!loading && overallActiveCases === undefined">
+        Unknown
+    </ng-container>
+</h5>
+
+<h6>
+    Last Update:
+    <ng-container *ngIf="loading">
+        <span class="fa fa-spin fa-spinner"></span>
+    </ng-container>
+
+    <ng-container *ngIf="updatedAt">
+        {{updatedAt | date:'medium'}}
+    </ng-container>
+
+    <ng-container *ngIf="!loading && !updatedAt">
+        Unknown
+    </ng-container>
+</h6>

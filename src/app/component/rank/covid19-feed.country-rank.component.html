@@ -1,5 +1,13 @@
 <h5>Top {{rankLimit}} Countries with Active Cases</h5>
 
+<ng-container *ngIf="loading">
+    <span class="fa fa-spin fa-spinner"></span> Loading...
+</ng-container>
+
+<ng-container *ngIf="loading === false && list.length === 0">
+    Unknown
+</ng-container>
+
 <ol>
     <ng-container *ngFor="let record of list">
         <li>{{record.country}}</li>

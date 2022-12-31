@@ -1,5 +1,15 @@
 <h5>Covid19 Total Active Cases By Continents</h5>
 
+<ng-container *ngIf="loading">
+    <span class="fa fa-spin fa-spinner"></span> Loading...
+</ng-container>
+
+<ng-container *ngIf="errorMessage">
+    <div class="alert alert-danger">
+        {{errorMessage}}
+    </div>
+</ng-container>
+
 <ng-container *ngFor="let group of groups">
 
     <div class="flex flex-auto flex-col">
