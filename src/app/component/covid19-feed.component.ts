@@ -5,26 +5,26 @@ import {
 } from "@angular/core";
 
 import {
-    Covid19TrackerDelegateRegistryService,
-    ICovid19TrackerEventListener,
-    Covid19TrackerEventLoadingState
+    ICovid19TrackerDelegateEvent,
+    Covid19TrackerEventLoadingState,
+    Covid19TrackerEventService
 } from "../covid19-tracker";
 import { Covid19Statistic } from "../covid19-tracker/model";
 
 @Component({
     template: ""
 })
-export abstract class Covid19FeedComponent implements ICovid19TrackerEventListener, OnDestroy {
+export abstract class Covid19FeedComponent implements ICovid19TrackerDelegateEvent, OnDestroy {
 
     private delegateId!: number;
     public errorMessage!: string | undefined;
     public loading!: boolean;
 
     constructor(
-        private readonly delegateRegistryService: Covid19TrackerDelegateRegistryService,
+        private readonly eventService: Covid19TrackerEventService,
         protected readonly cdr: ChangeDetectorRef
     ) {
-        this.delegateId = delegateRegistryService.subscribeDelegate(this);
+        this.delegateId = eventService.subscribeDelegate(this);
     }
 
     public abstract statisticUpdate(statistic: Covid19Statistic[]): void;
@@ -41,6 +41,6 @@ export abstract class Covid19FeedComponent implements ICovid19TrackerEventListen
     }
 
     public ngOnDestroy(): void {
-        this.delegateRegistryService.unsubscribeDelegate(this.delegateId);
+        this.eventService.unsubscribeDelegate(this.delegateId);
     }
 }

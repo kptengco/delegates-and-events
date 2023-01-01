@@ -20,7 +20,6 @@ import { Covid19Module } from "./covid19-tracker";
         BrowserModule,
         Covid19Module
     ],
-    providers: [],
     bootstrap: [
         AppComponent
     ]
