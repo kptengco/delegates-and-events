@@ -21,7 +21,7 @@ export class Covid19TrackerEventService implements ICovid19TrackerEvent {
         this.delegator = new Covid19TrackerDelegator(this.delegates);
     }
 
-    public subscribeDelegate(delegate: ICovid19TrackerDelegateEvent): number {
+    public registerDelegate(delegate: ICovid19TrackerDelegateEvent): number {
         this.delegateId++;
 
         this.delegates.set(this.delegateId, delegate);
@@ -29,7 +29,7 @@ export class Covid19TrackerEventService implements ICovid19TrackerEvent {
         return this.delegateId;
     }
 
-    public unsubscribeDelegate(delegateId: number): void {
+    public unregisterDelegate(delegateId: number): void {
         if (this.delegates.has(delegateId) === false) {
             throw new Error(`'${delegateId}' delegateId not found in the dictionary.`);
         }
@@ -44,7 +44,7 @@ export class Covid19TrackerEventService implements ICovid19TrackerEvent {
             .subscribe({
                 next: (statistic: Covid19Statistic[]) => {
                     this.delegator.statisticLoading(Covid19TrackerEventLoadingState.SUCCESS);
-                    this.delegator.statisticUpdate(statistic);
+                    this.delegator.statisticUpdate(Object.seal(statistic));
                 },
                 error: (error: HttpErrorResponse) => {
                     this.delegator.statisticLoading(Covid19TrackerEventLoadingState.ERROR, error.message);

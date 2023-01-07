@@ -24,7 +24,7 @@ export abstract class Covid19FeedComponent implements ICovid19TrackerDelegateEve
         private readonly eventService: Covid19TrackerEventService,
         protected readonly cdr: ChangeDetectorRef
     ) {
-        this.delegateId = eventService.subscribeDelegate(this);
+        this.delegateId = eventService.registerDelegate(this);
     }
 
     public abstract statisticUpdate(statistic: Covid19Statistic[]): void;
@@ -41,6 +41,6 @@ export abstract class Covid19FeedComponent implements ICovid19TrackerDelegateEve
     }
 
     public ngOnDestroy(): void {
-        this.eventService.unsubscribeDelegate(this.delegateId);
+        this.eventService.unregisterDelegate(this.delegateId);
     }
 }
