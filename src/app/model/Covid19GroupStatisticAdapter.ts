@@ -5,7 +5,7 @@ export class Covid19GroupStatisticAdapter {
     private shouldCollapse: boolean = false;
 
     public get collapseView(): boolean {
-        return this.shouldCollapse
+        return this.shouldCollapse;
     };
 
     public get statistic(): Covid19Statistic {
