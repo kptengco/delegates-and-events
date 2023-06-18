@@ -25,7 +25,7 @@ export class Covid19FeedCountryRankComponent extends Covid19FeedComponent {
         this.ranking = statistic
             .filter(stat => stat.continent !== stat.country)
             .sort((compareA: Covid19Statistic, compareB: Covid19Statistic) => {
-                return compareB.cases.active - compareA.cases.active;
+                return (compareB.cases.active || 0) - (compareA.cases.active || 0);
             })
             .slice(0, this.rankLimit);
     }

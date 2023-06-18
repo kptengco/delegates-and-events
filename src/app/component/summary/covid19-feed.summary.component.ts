@@ -28,7 +28,7 @@ export class Covid19FeedSummaryComponent extends Covid19FeedComponent {
     private updateSummary(statistic: Covid19Statistic[]): void {
         for (const stat of statistic) {
             if (stat.continent === "All") {
-                this.totalActiveCases = stat.cases.active;
+                this.totalActiveCases = stat.cases.active || 0;
                 this.lastUpdate = new Date(stat.time);
                 break;
             }

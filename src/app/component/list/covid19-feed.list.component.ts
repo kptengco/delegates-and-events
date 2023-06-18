@@ -36,6 +36,10 @@ export class Covid19FeedListComponent extends Covid19FeedComponent {
 
     private updateGroupList(statistic: Covid19Statistic[]) {
         for (const stat of statistic) {
+            if (stat.continent === null) {
+                continue;
+            }
+
             if (stat.continent === "All") {
                 continue;
             }
@@ -62,18 +66,22 @@ export class Covid19FeedListComponent extends Covid19FeedComponent {
     }
 
     private generateGroupKey(statistic: Covid19Statistic): string {
+        if (statistic.continent === null) {
+            throw new Error(`continent cannot be null`);
+        }
+
         return statistic.continent;
     }
 
     private sortGroupList(): void {
         this.groups = Array.from(this.groupDictionary.values())
             .sort((compareA: Covid19GroupStatisticAdapter, compareB: Covid19GroupStatisticAdapter) => {
-                return compareB.statistic.cases.active - compareA.statistic.cases.active;
+                return (compareB.statistic.cases.active || 0) - (compareA.statistic.cases.active || 0);
             });
 
         for (const list of this.listDictionary.values()) {
             list.sort((compareA: Covid19Statistic, compareB: Covid19Statistic) => {
-                return compareB.cases.active - compareA.cases.active;
+                return (compareB.cases.active || 0) - (compareA.cases.active || 0);
             });
         }
     }
